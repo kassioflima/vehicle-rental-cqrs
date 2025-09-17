@@ -20,7 +20,7 @@ public class RentalsController(IMediator mediator, ILogger<RentalsController> lo
     /// Create a new rental
     /// </summary>
     [HttpPost]
-    public async Task<ActionResult<RentalDto?>?> CreateRental([FromBody] CreateRentalCommand command, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<RentalDto>?> CreateRental([FromBody] CreateRentalCommand command, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -51,7 +51,7 @@ public class RentalsController(IMediator mediator, ILogger<RentalsController> lo
     /// Get rentals by delivery person
     /// </summary>
     [HttpGet("delivery-person/{deliveryPersonId}")]
-    public async Task<ActionResult<IEnumerable<RentalDto>?>?> GetRentalsByDeliveryPerson(Guid deliveryPersonId, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<IEnumerable<RentalDto>>?> GetRentalsByDeliveryPerson(Guid deliveryPersonId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -64,7 +64,7 @@ public class RentalsController(IMediator mediator, ILogger<RentalsController> lo
     /// Calculate rental return amount
     /// </summary>
     [HttpPost("{id}/calculate-return")]
-    public async Task<ActionResult<RentalCalculationDto?>?> CalculateRentalReturn(Guid id, [FromBody] DateTime returnDate, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<RentalCalculationDto>?> CalculateRentalReturn(Guid id, [FromBody] DateTime returnDate, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -77,12 +77,12 @@ public class RentalsController(IMediator mediator, ILogger<RentalsController> lo
     /// Complete rental
     /// </summary>
     [HttpPost("{id}/complete")]
-    public async Task<ActionResult<RentalDto?>?> CompleteRental(Guid id, [FromBody] DateTime returnDate, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<RentalDto>?> CompleteRental(Guid id, [FromBody] DateTime returnDate, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
         var command = new CompleteRentalCommand { Id = id, ReturnDate = returnDate };
         var result = await _mediator.Send(command, cancellationToken);
-        return result?.ToActionResult();
+        return result.ToActionResult();
     }
 }

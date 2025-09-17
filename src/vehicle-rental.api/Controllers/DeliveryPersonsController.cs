@@ -22,19 +22,19 @@ public class DeliveryPersonsController(IMediator mediator, ILogger<DeliveryPerso
     /// </summary>
     [HttpPost]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<DeliveryPersonDto?>?> CreateDeliveryPerson([FromBody] CreateDeliveryPersonCommand command, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<DeliveryPersonDto>?> CreateDeliveryPerson([FromBody] CreateDeliveryPersonCommand command, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
         var result = await _mediator.Send(command, cancellationToken);
-        return result?.ToActionResult();
+        return result.ToActionResult();
     }
 
     /// <summary>
     /// Get delivery person by ID
     /// </summary>
     [HttpGet("{id}")]
-    public async Task<ActionResult<DeliveryPersonDto?>?> GetDeliveryPerson(Guid id, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<DeliveryPersonDto?>> GetDeliveryPerson(Guid id, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -54,7 +54,7 @@ public class DeliveryPersonsController(IMediator mediator, ILogger<DeliveryPerso
     /// </summary>
     [HttpGet]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<IEnumerable<DeliveryPersonDto>?>?> GetDeliveryPersons(CancellationToken cancellationToken = default)
+    public async Task<ActionResult<IEnumerable<DeliveryPersonDto>>?> GetDeliveryPersons(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -68,7 +68,7 @@ public class DeliveryPersonsController(IMediator mediator, ILogger<DeliveryPerso
     /// </summary>
     [HttpPost("{id}/license-image")]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<DeliveryPersonDto?>?> UploadLicenseImage(Guid id, [FromForm] LicenseImageUploadModel uploadModel, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<DeliveryPersonDto>?> UploadLicenseImage(Guid id, [FromForm] LicenseImageUploadModel uploadModel, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 

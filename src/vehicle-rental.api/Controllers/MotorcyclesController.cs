@@ -21,12 +21,12 @@ public class MotorcyclesController(IMediator mediator, ILogger<MotorcyclesContro
     /// </summary>
     [HttpPost]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<MotorcycleDto?>?> CreateMotorcycle([FromBody] CreateMotorcycleCommand command, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<MotorcycleDto>?> CreateMotorcycle([FromBody] CreateMotorcycleCommand command, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
         var result = await _mediator.Send(command, cancellationToken);
-        return result?.ToActionResult();
+        return result.ToActionResult();
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public class MotorcyclesController(IMediator mediator, ILogger<MotorcyclesContro
     /// Get all motorcycles with optional license plate filter
     /// </summary>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<MotorcycleDto>?>?> GetMotorcycles([FromQuery] string? licensePlate = null, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<IEnumerable<MotorcycleDto>>?> GetMotorcycles([FromQuery] string? licensePlate = null, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -66,7 +66,7 @@ public class MotorcyclesController(IMediator mediator, ILogger<MotorcyclesContro
     /// </summary>
     [HttpPut("{id}/license-plate")]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<MotorcycleDto?>?> UpdateLicensePlate(Guid id, [FromBody] UpdateMotorcycleLicensePlateCommand command, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<MotorcycleDto>?> UpdateLicensePlate(Guid id, [FromBody] UpdateMotorcycleLicensePlateCommand command, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
