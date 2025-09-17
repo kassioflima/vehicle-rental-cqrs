@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>vehicle_rental.domain</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\motorcycles\enums\" />
+    <Folder Include="Domain\motorcycles\queries\" />
+    <Folder Include="Domain\motorcycleNotifications\dtos\" />
+    <Folder Include="Domain\motorcycleNotifications\enums\" />
+    <Folder Include="Domain\motorcycleNotifications\mapper\" />
+    <Folder Include="Domain\motorcycleNotifications\queries\" />
+    <Folder Include="Domain\deliveryPersons\mapper\" />
+    <Folder Include="Domain\deliveryPersons\queries\" />
+    <Folder Include="Domain\rentals\queries\" />
+    <Folder Include="shared\dtos\" />
+    <Folder Include="shared\enum\" />
+    <Folder Include="shared\mapper\" />
+    <Folder Include="shared\queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>

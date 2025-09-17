@@ -1,0 +1,9 @@
+services:
+  vehicle-rental.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5000:80"
+    volumes:
+      - ./uploads:/app/uploads
