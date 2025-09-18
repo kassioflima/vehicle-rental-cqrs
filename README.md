@@ -812,3 +812,6 @@ This project is part of the Mottu backend challenge and follows the specified re
 ✅ **Modern C# Features**: Primary constructors, nullable reference types  
 ✅ **Structured Logging**: Serilog integration with file and console sinks  
 ✅ **Database Migrations**: Entity Framework migrations for schema management
+
+- **Desenvolvedor**: [Kássio Fernandes Lima]
+- **Email**: [kassioflima@gmail.com]
